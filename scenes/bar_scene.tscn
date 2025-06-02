@@ -1,0 +1,105 @@
+[gd_scene load_steps=19 format=3 uid="uid://kjoomvjatif3"]
+
+[ext_resource type="Script" uid="uid://djejlqj5rljfp" path="res://scenes/bar_scene.gd" id="1_fg7sn"]
+[ext_resource type="Texture2D" uid="uid://cedny05seij2w" path="res://assets/background.png" id="1_kqol2"]
+[ext_resource type="Texture2D" uid="uid://cmtp0wokk86pk" path="res://assets/equipment/ice_machine.png" id="4_jkfde"]
+[ext_resource type="Texture2D" uid="uid://duaeuju2rq5of" path="res://assets/equipment/mint_plant.png" id="5_s7bno"]
+[ext_resource type="Texture2D" uid="uid://crpya3mj12uxh" path="res://assets/equipment/lemon_bowl.png" id="6_2qex2"]
+[ext_resource type="Texture2D" uid="uid://drftn6a5x1g8y" path="res://assets/equipment/whiskey.png" id="6_qm812"]
+[ext_resource type="Texture2D" uid="uid://icvf2cfc6svb" path="res://assets/equipment/vodka.png" id="7_0pew1"]
+[ext_resource type="Texture2D" uid="uid://bm3xfpaaskiy3" path="res://assets/equipment/jager.png" id="8_06iih"]
+[ext_resource type="Texture2D" uid="uid://de1mo18dc3iwi" path="res://assets/equipment/orange_juice.png" id="9_nrkta"]
+[ext_resource type="Texture2D" uid="uid://dn3v0vbs5wk6k" path="res://assets/equipment/pinaple_juice.png" id="10_113xj"]
+[ext_resource type="Texture2D" uid="uid://bprtjiumoqtul" path="res://assets/clients/client6.png" id="11_m7nk6"]
+[ext_resource type="PackedScene" uid="uid://tsdxar8ovser" path="res://scenes/spawnable/glasses/glasses1.tscn" id="12_06iih"]
+[ext_resource type="PackedScene" uid="uid://dktdx6aai2w3h" path="res://scenes/spawnable/glasses/glasses2.tscn" id="13_nrkta"]
+[ext_resource type="PackedScene" uid="uid://4b0xqg23a0wp" path="res://scenes/spawnable/glasses/glasses3.tscn" id="14_nrkta"]
+[ext_resource type="PackedScene" uid="uid://bo6x7ytw8nfys" path="res://scenes/spawnable/glasses/pipe.tscn" id="15_113xj"]
+[ext_resource type="Texture2D" uid="uid://b25pqw5x6smxj" path="res://assets/equipment/numpad.png" id="16_m7nk6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nrkta"]
+size = Vector2(628, 120.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_113xj"]
+size = Vector2(771.907, 15)
+
+[node name="BarScene" type="Node2D"]
+script = ExtResource("1_fg7sn")
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(768, 512)
+texture = ExtResource("1_kqol2")
+
+[node name="IceMachine" type="Sprite2D" parent="."]
+position = Vector2(94, 885)
+scale = Vector2(0.471575, 0.471575)
+texture = ExtResource("4_jkfde")
+
+[node name="MintPlant" type="Sprite2D" parent="."]
+position = Vector2(513, 670)
+scale = Vector2(0.626073, 0.626073)
+texture = ExtResource("5_s7bno")
+
+[node name="LemonBowl" type="Sprite2D" parent="."]
+position = Vector2(262, 845)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("6_2qex2")
+
+[node name="Whiskey" type="Sprite2D" parent="."]
+position = Vector2(48.0001, 696)
+scale = Vector2(0.42, 0.42)
+texture = ExtResource("6_qm812")
+
+[node name="Vodka" type="Sprite2D" parent="."]
+position = Vector2(128.75, 694.298)
+scale = Vector2(0.420886, 0.420886)
+texture = ExtResource("7_0pew1")
+
+[node name="Jager" type="Sprite2D" parent="."]
+position = Vector2(213.125, 695.236)
+scale = Vector2(0.413522, 0.413522)
+texture = ExtResource("8_06iih")
+
+[node name="OrangeJuice" type="Sprite2D" parent="."]
+position = Vector2(292, 701)
+scale = Vector2(0.463889, 0.463889)
+texture = ExtResource("9_nrkta")
+
+[node name="PinapleJuice" type="Sprite2D" parent="."]
+position = Vector2(391.5, 697.814)
+scale = Vector2(0.470297, 0.470297)
+texture = ExtResource("10_113xj")
+
+[node name="Client" type="Sprite2D" parent="."]
+position = Vector2(1127.09, 570.5)
+scale = Vector2(0.57971, 0.57971)
+texture = ExtResource("11_m7nk6")
+
+[node name="Glasses1" parent="." instance=ExtResource("12_06iih")]
+position = Vector2(721, 964)
+
+[node name="glasses2" parent="." instance=ExtResource("13_nrkta")]
+position = Vector2(913, 964)
+
+[node name="glasses3" parent="." instance=ExtResource("14_nrkta")]
+position = Vector2(1088, 974)
+
+[node name="GlassesDiscard" type="StaticBody2D" parent="." groups=["glassDiscard"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GlassesDiscard"]
+position = Vector2(900, 951.75)
+shape = SubResource("RectangleShape2D_nrkta")
+
+[node name="Counter" type="StaticBody2D" parent="." groups=["counter"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Counter"]
+position = Vector2(1099.79, 810)
+shape = SubResource("RectangleShape2D_113xj")
+
+[node name="Pipe" parent="." instance=ExtResource("15_113xj")]
+position = Vector2(636, 757)
+
+[node name="Numpad" type="Sprite2D" parent="." groups=["shaker"]]
+position = Vector2(508, 887)
+scale = Vector2(0.152644, 0.152644)
+texture = ExtResource("16_m7nk6")
