@@ -44,6 +44,8 @@ func serveDrink(taste: Dictionary) -> Array:
 
 
 func reply(conversation: String) -> bool:
+	print("dupa")
+	print(conversation)
 	var dymek := get_tree().current_scene.get_node_or_null("Dymek")
 	if not dymek:
 		push_error("Nie znaleziono węzła Dymek!")
