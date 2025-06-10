@@ -11,8 +11,9 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if isFocused and $TextEdit.text != "":
 		if Input.is_action_just_pressed("enter"):
-			var response = await Global.reply($TextEdit.text)
+			var toBeSend = $TextEdit.text
 			$TextEdit.text = ""
+			var response = await Global.reply(toBeSend)
 			attempts -= 1
 			if attempts == 0 or response:
 				visible = false
