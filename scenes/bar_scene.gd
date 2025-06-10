@@ -1,7 +1,6 @@
 extends Node2D
 
 @onready var sprite: Sprite2D = $Sprite2D
-var baseUrl = "http://127.0.0.1:8000"
 var lastClient = null
 var textures := [
 	preload("res://assets/clients/client1.png"),
@@ -12,6 +11,7 @@ var textures := [
 	preload("res://assets/clients/client4.png"),
 ]
 var scientist_ids: Array = []
+var conversationAttempts = 0
 
 func _ready():
 	$Client.visible = false
@@ -32,7 +32,7 @@ func start_game_request() -> void:
 
 	var headers := ["Content-Type: application/json"]
 	var body := "{}"
-	var error := http.request(baseUrl + "/game/start", headers, HTTPClient.METHOD_POST, body)
+	var error := http.request(Global.baseUrl + "/game/start", headers, HTTPClient.METHOD_POST, body)
 
 	if error != OK:
 		push_error("Błąd zapytania: %s" % error)
@@ -61,13 +61,14 @@ func get_scientist() -> void:
 		chosen = randi() % min(scientist_ids.size(), textures.size())
 		if chosen != lastClient:
 			lastClient = chosen
+			Global.activeScientist = chosen
 			repeat = false
 	
 	var http := HTTPRequest.new()
 	add_child(http)
 
 	var headers := ["Content-Type: application/json"]
-	var error := http.request(baseUrl + "/scientist/"+str(lastClient), headers, HTTPClient.METHOD_GET)
+	var error := http.request(Global.baseUrl + "/scientist/"+str(Global.activeScientist), headers, HTTPClient.METHOD_GET)
 
 	if error != OK:
 		push_error("Błąd zapytania: %s" % error)
@@ -94,7 +95,7 @@ func get_scientist() -> void:
 
 func show_scientist(drink_hint: String) -> void:
 	var random_texture = textures[lastClient]
-	$Client.texture = random_texture
+	$Client/ClientSprite.texture = random_texture
 	$Client.visible = true
 	$Dymek.setText(drink_hint)
 	$Dymek.visible = true
@@ -107,3 +108,7 @@ func show_scientist(drink_hint: String) -> void:
 		$Client.modulate.a = alpha
 		$Dymek.modulate.a = alpha
 		await get_tree().create_timer(wait_time).timeout
+
+func start_conversation(attempts: int) -> void:
+	conversationAttempts = attempts
+	print("starting")

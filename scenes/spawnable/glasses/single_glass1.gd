@@ -1,8 +1,23 @@
 extends Node2D
 var dragable = false
 var toBeDiscarded = false
+var toBeServed = false
 var onCounter = false
 var prevLocation = Vector2(0,0)
+var containing = 0
+const initTaste = {
+	"vol": 0,
+	"sweetness": 0,
+	"sourness": 0,
+	"fruitness": 0,
+	"herbalness": 0,
+	"ice": 0,
+	"shaken": 0,
+}
+
+var taste = initTaste
+
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -25,7 +40,10 @@ func _process(delta: float) -> void:
 			else:
 				prevLocation = global_position
 				
-			if toBeDiscarded:
+			if toBeServed:
+				Global.serveDrink(taste)
+				
+			if toBeDiscarded or toBeServed:
 				visible = false
 				prevLocation = Vector2(0,0)
 				$"..".isGlassOut = false
@@ -47,6 +65,8 @@ func _on_single_area_2d_body_entered(body: Node2D) -> void:
 		toBeDiscarded = true
 	if body.is_in_group("counter"):
 		onCounter = true
+	if body.is_in_group("client"):
+		toBeServed = true
 
 
 func _on_single_area_2d_body_exited(body: Node2D) -> void:
@@ -54,3 +74,5 @@ func _on_single_area_2d_body_exited(body: Node2D) -> void:
 			toBeDiscarded = false
 		if body.is_in_group("counter"):
 			onCounter = false
+		if body.is_in_group("client"):
+			toBeServed = false

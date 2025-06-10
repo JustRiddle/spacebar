@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://kjoomvjatif3"]
+[gd_scene load_steps=22 format=3 uid="uid://kjoomvjatif3"]
 
 [ext_resource type="Script" uid="uid://djejlqj5rljfp" path="res://scenes/bar_scene.gd" id="1_fg7sn"]
 [ext_resource type="Texture2D" uid="uid://cedny05seij2w" path="res://assets/background.png" id="1_kqol2"]
@@ -19,6 +19,9 @@
 [ext_resource type="PackedScene" uid="uid://davwijeihhr5b" path="res://scenes/bootles/vodka.tscn" id="18_pnqw7"]
 [ext_resource type="PackedScene" uid="uid://gvr78v6jeifs" path="res://scenes/UI/dymek.tscn" id="18_tlcuc"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jfl6i"]
+size = Vector2(581.325, 579.5)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nrkta"]
 size = Vector2(628, 120.5)
 
@@ -36,10 +39,16 @@ texture = ExtResource("1_kqol2")
 position = Vector2(88, 882)
 scale = Vector2(0.7, 0.7)
 
-[node name="Client" type="Sprite2D" parent="."]
+[node name="Client" type="StaticBody2D" parent="." groups=["client"]]
 position = Vector2(1127.09, 570.5)
 scale = Vector2(0.57971, 0.57971)
+
+[node name="ClientSprite" type="Sprite2D" parent="Client"]
 texture = ExtResource("4_jfl6i")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Client"]
+position = Vector2(62.8074, -133.638)
+shape = SubResource("RectangleShape2D_jfl6i")
 
 [node name="Glasses1" parent="." instance=ExtResource("12_06iih")]
 position = Vector2(721, 964)
