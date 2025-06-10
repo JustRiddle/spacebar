@@ -63,15 +63,11 @@ texture = ExtResource("1_8jg63")
 [node name="SingleArea2D" type="Area2D" parent="SingleGlass"]
 
 [node name="SingleCollisionShape2D" type="CollisionShape2D" parent="SingleGlass/SingleArea2D"]
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_w5cms")
 
-[node name="SingleCollisionShape2D" type="CollisionShape2D" parent="SingleGlass"]
-scale = Vector2(1, 1)
+[node name="SingleCollisionShape2D" type="CollisionShape2D" parent="SingleGlass" groups=["glass"]]
 shape = SubResource("RectangleShape2D_w5cms")
 
-[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
-[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
 [connection signal="mouse_entered" from="Area2D" to="." method="_on_area_2d_mouse_entered"]
 [connection signal="mouse_exited" from="Area2D" to="." method="_on_area_2d_mouse_exited"]
 [connection signal="body_entered" from="SingleGlass/SingleArea2D" to="SingleGlass" method="_on_single_area_2d_body_entered"]
