@@ -41,6 +41,15 @@ func _process(delta: float) -> void:
 				prevLocation = global_position
 				
 			if toBeServed:
+				taste = {
+					"vol": randi() % 40,
+					"sweetness": randi() % 5,
+					"sourness": randi() % 5,
+					"fruitness": randi() % 5,
+					"herbalness": randi() % 5,
+					"ice": randi() % 1,
+					"shaken": randi() % 1,
+				}
 				Global.serveDrink(taste)
 				
 			if toBeDiscarded or toBeServed:

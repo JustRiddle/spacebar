@@ -11,7 +11,6 @@ var textures := [
 	preload("res://assets/clients/client4.png"),
 ]
 var scientist_ids: Array = []
-var conversationAttempts = 0
 
 func _ready():
 	$Client.visible = false
@@ -110,5 +109,29 @@ func show_scientist(drink_hint: String) -> void:
 		await get_tree().create_timer(wait_time).timeout
 
 func start_conversation(attempts: int) -> void:
-	conversationAttempts = attempts
+	$Answerbox.visible = true
+	$Answerbox.attempts = attempts
+	$Answerbox/TextEdit.grab_focus()
 	print("starting")
+	
+	
+func hide_scientist() -> void:
+	var random_texture = textures[lastClient]
+	$Client/ClientSprite.texture = random_texture
+	$Client.visible = true
+	$Dymek.setText("")
+	$Dymek.visible = true
+	var fade_time = 0.5  # czas trwania fade-in w sekundach
+	var steps = 30
+	var wait_time = fade_time / steps
+
+	for i in range(steps + 1):
+		var alpha = float(30 - i) / steps
+		$Client.modulate.a = alpha
+		$Dymek.modulate.a = alpha
+		await get_tree().create_timer(wait_time).timeout
+		
+func new_client() -> void:
+	await hide_scientist()
+	await get_tree().create_timer(3.0).timeout
+	await get_scientist()

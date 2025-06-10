@@ -11,13 +11,13 @@
 [ext_resource type="PackedScene" uid="uid://bp7e2276y1qys" path="res://scenes/spawnable/spices/mint.tscn" id="16_avud4"]
 [ext_resource type="PackedScene" uid="uid://f7fxsxnebblp" path="res://scenes/spawnable/spices/lemon.tscn" id="16_jfl6i"]
 [ext_resource type="Texture2D" uid="uid://b25pqw5x6smxj" path="res://assets/equipment/numpad.png" id="16_m7nk6"]
-[ext_resource type="Texture2D" uid="uid://6c53ubbucgdy" path="res://assets/answerbox.png" id="17_jfl6i"]
 [ext_resource type="PackedScene" uid="uid://dmrbe1wbt31xr" path="res://scenes/bootles/jager.tscn" id="17_tlcuc"]
 [ext_resource type="PackedScene" uid="uid://c407ybnbdi1or" path="res://scenes/bootles/orange.tscn" id="18_bfmi0"]
 [ext_resource type="PackedScene" uid="uid://dc6vtqww4aa8h" path="res://scenes/bootles/pinaple.tscn" id="18_ev3ky"]
 [ext_resource type="PackedScene" uid="uid://315todb2d0d5" path="res://scenes/bootles/whiskey.tscn" id="18_jfl6i"]
 [ext_resource type="PackedScene" uid="uid://davwijeihhr5b" path="res://scenes/bootles/vodka.tscn" id="18_pnqw7"]
 [ext_resource type="PackedScene" uid="uid://gvr78v6jeifs" path="res://scenes/UI/dymek.tscn" id="18_tlcuc"]
+[ext_resource type="PackedScene" uid="uid://1m8yel5ilbi0" path="res://answerbox.tscn" id="19_tlcuc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jfl6i"]
 size = Vector2(581.325, 579.5)
@@ -86,11 +86,6 @@ position = Vector2(517, 672)
 position = Vector2(255, 861)
 scale = Vector2(0.75, 0.75)
 
-[node name="Answerbox" type="Sprite2D" parent="."]
-visible = false
-position = Vector2(768, 850)
-texture = ExtResource("17_jfl6i")
-
 [node name="Whiskey" parent="." instance=ExtResource("18_jfl6i")]
 position = Vector2(47, 698)
 
@@ -108,3 +103,7 @@ position = Vector2(391, 697)
 
 [node name="Dymek" parent="." instance=ExtResource("18_tlcuc")]
 position = Vector2(678, 261)
+
+[node name="Answerbox" parent="." instance=ExtResource("19_tlcuc")]
+visible = false
+position = Vector2(782, 870)
